@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container-fluid {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            padding: 20px;
+            position: relative;
+        }
+        .dashboard-container {
+            flex-grow: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            overflow: auto;
+        }
+        .table-container, .map-container {
+            flex: 1;
+            min-width: 800px;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #map {
+            width: 100%;
+            height: 715px;
+            border-radius: 10px;
+        }
+        thead {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+        .alert-container {
+            padding: 10px;
+            background: #ff4d4d;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .dark-mode {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        .dark-mode .container-fluid {
+            background-color: #495057;
+        }
+        .dark-mode .table-container, .dark-mode .map-container {
+            background: #6c757d;
+        }
+        .dark-mode-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #343a40;
+        }
+        .dark-mode .dark-mode-btn {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <button id="toggle-dark-mode" class="dark-mode-btn">
+            <i class="fas fa-moon"></i>
+        </button>
+        <h2 class="text-center">Emergency Response Dashboard</h2>
+        <div id="alert-section" class="alert-container">No active alerts</div>
+        <div class="row dashboard-container">
+            <div class="col-md-6 table-container">
+                <h4><i class="fas fa-exclamation-triangle"></i> Emergencies</h4>
+                <table id="emergency-table" class="table table-striped table-responsive">
+                    <thead>
+                        <tr><th>ID</th><th>Location</th><th>Time</th><th>Concern</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Manila</td><td>12:30 PM</td><td>Fire</td><td>Active</td></tr>
+                        <tr><td>2</td><td>Cebu</td><td>3:45 PM</td><td>Flood</td><td>Resolved</td></tr>
+                    </tbody>
+                </table>
+                <h4><i class="fas fa-bell"></i> Notifications</h4>
+                <table id="notification-table" class="table table-striped table-responsive">
+                    <thead>
+                        <tr><th>ID</th><th>Message</th><th>Time Sent</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Emergency Alert: Fire in Manila</td><td>12:35 PM</td></tr>
+                        <tr><td>2</td><td>Flood Warning in Cebu</td><td>3:50 PM</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6 map-container">
+                <h4><i class="fas fa-map-marked-alt"></i> Map View</h4>
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#emergency-table').DataTable();
+            $('#notification-table').DataTable();
+            
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                $('body').addClass('dark-mode');
+                $('#toggle-dark-mode i').removeClass('fa-moon').addClass('fa-sun');
+            }
+            
+            $('#toggle-dark-mode').click(function() {
+                $('body').toggleClass('dark-mode');
+                if ($('body').hasClass('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    $('#toggle-dark-mode i').removeClass('fa-moon').addClass('fa-sun');
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    $('#toggle-dark-mode i').removeClass('fa-sun').addClass('fa-moon');
+                }
+            });
+        });
+        
+        var map = L.map('map').setView([12.8797, 121.774], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.marker([14.5995, 120.9842]).addTo(map).bindPopup('Manila - Fire at 12:30 PM');
+        L.marker([10.3157, 123.8854]).addTo(map).bindPopup('Cebu - Flood at 3:45 PM');
+    </script>
+</body>
+</html>
