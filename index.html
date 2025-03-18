@@ -22,60 +22,68 @@
             display: flex;
             flex-direction: column;
             background-color: #ffffff;
-            padding: 20px;
+            padding: 25px;
             position: relative;
+        }
+        .header-container {
+            background: #345c95;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .header-container img {
+            height: 24px;
+            margin-right: 55px;
+        }
+        .header-container h2 {
+            color: white;
+            margin: 25;
         }
         .dashboard-container {
             flex-grow: 1;
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
             overflow: auto;
         }
         .table-container, .map-container {
             flex: 1;
-            min-width: 800px;
-            background: #ffffff;
+            min-width: 500px;
+            background: #f2f2f7;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
         #map {
             width: 100%;
-            height: 715px;
-            border-radius: 10px;
+            height: 750px;
+            border-radius: 1px;
         }
         thead {
-            background-color: #0056b3;
-            color: #ffffff;
-        }
-        .alert-container {
-            padding: 10px;
-            background: #ff4d4d;
-            color: white;
-            text-align: center;
-            border-radius: 5px;
-            font-weight: bold;
+            background-color: #345c95;
+            color: #dddddd;
         }
         .dark-mode {
-            background-color: #343a40;
-            color: #ffffff;
+            background-color: #37393b;
+            color: #ffffffd8;
         }
         .dark-mode .container-fluid {
-            background-color: #495057;
+            background-color: #27282b;
         }
         .dark-mode .table-container, .dark-mode .map-container {
-            background: #6c757d;
+            background: #343435;
         }
         .dark-mode-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 42px;
+            right: 38px;
             border: none;
             background: none;
             cursor: pointer;
             font-size: 1.5rem;
-            color: #343a40;
+            color: #0d0d0f;
         }
         .dark-mode .dark-mode-btn {
             color: #ffffff;
@@ -84,11 +92,13 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div class="header-container">
+            <img src="logo.png" alt="Logo">
+            <h2>Emergency Response Dashboard</h2>
+        </div>
         <button id="toggle-dark-mode" class="dark-mode-btn">
             <i class="fas fa-moon"></i>
         </button>
-        <h2 class="text-center">Emergency Response Dashboard</h2>
-        <div id="alert-section" class="alert-container">No active alerts</div>
         <div class="row dashboard-container">
             <div class="col-md-6 table-container">
                 <h4><i class="fas fa-exclamation-triangle"></i> Emergencies</h4>
