@@ -22,6 +22,7 @@ window.onload = function () {
         updateChart(redCount, yellowCount, greenCount, blackCount);
     }
 
+    
 
     var emergencyChart;
     function updateChart(redCount, yellowCount, greenCount, blackCount) {
@@ -37,22 +38,23 @@ window.onload = function () {
                     label: 'Number of Emergencies',
                     data: [redCount, yellowCount, greenCount, blackCount],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)', 
-                        'rgba(255, 206, 86, 0.6)', 
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(0, 0, 0, 0.6)'
+                        'rgba(87, 180, 186, 0.6)',
+                        'rgba(87, 180, 186, 0.6)', 
+                        'rgba(87, 180, 186, 0.6)', 
+                        'rgba(87, 180, 186, 0.6)'       
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(0, 0, 0, 1)'
+                        'rgba(87, 180, 186, 1)',
+                        'rgba(87, 180, 186, 1)',
+                        'rgba(87, 180, 186, 1)',
+                        'rgba(87, 180, 186, 1)'
                     ],
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
+                    
                     y: {
                         beginAtZero: true
                     }
@@ -60,6 +62,7 @@ window.onload = function () {
             }
         });
     }
+
 
     function categorizeRescues() {
         let MobileApp = 0;
@@ -85,11 +88,11 @@ window.onload = function () {
                     label: 'Number of Rescues via Radar Mobile App',
                     data: [MobileApp, PhoneCall],
                     backgroundColor: [
-                        'rgba(28, 12, 91, 0.6)',  
+                        'rgba(87, 180, 186, 0.6)',  
                         'rgba(255, 99, 132, 0.6)'  
                     ],
                     borderColor: [
-                        'rgba(28, 12, 91, 1)',
+                        'rgba(87, 180, 186, 1)',
                         'rgba(255, 99, 132, 1)'
                     ],
                     borderWidth: 1
@@ -144,12 +147,12 @@ window.onload = function () {
     displaymonthly();
     categorizeEmergencies();
     categorizeRescues();
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll("#emergency-table tbody tr").forEach(row => {
-            const statusCell = row.cells[4];
-            const statusText = statusCell.textContent.trim().toLowerCase();
 
+    $(document).ready(function () {
+        $('#emergency-table tbody tr').each(function () {
+            const statusCell = $(this).find('td:nth-child(5)'); // Status column
+            const statusText = statusCell.text().trim().toLowerCase(); // Get text and normalize
+    
             let color = "";
             if (statusText === "1") { 
                 color = "red"; 
@@ -160,11 +163,13 @@ window.onload = function () {
             } else if (statusText === "0") { 
                 color = "black"; 
             }
-
-            statusCell.innerHTML = `<span class="status-square" style="background-color: ${color};"></span>`;
+    
+            if (color) {
+                statusCell.html(`<span class="status-square" style="background-color: ${color};"></span>`);
+            }
         });
     });
-
+    
     $(document).ready(function() {
         $('#emergency-table').DataTable();
         $('#notification-table').DataTable();
@@ -196,16 +201,17 @@ window.onload = function () {
             }
         });
     });
+}
 
     let map;
-    let marker;
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 14.5995, lng: 120.9842 },
-            zoom: 12,
-        });
-    }
+  function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 14.5995, lng: 120.9842 }, // Default to Manila
+          zoom: 13,
+
+      });
+  
 
     function getWeather() {
     const apiKey = 'YOUR-API-KEY';
