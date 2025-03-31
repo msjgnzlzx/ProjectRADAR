@@ -159,7 +159,7 @@ body {
 .dark-mode .section {
     background-color: #061527a2;
     color: #e0e0e0;
-    border: 1px solid #444;
+    border: 1px solid #222222;
 }
 
 .dropdown-container {
@@ -202,17 +202,14 @@ body {
     }
 }
 
-/* Parent Grid - Compact Full Page */
 .parent {
     display: grid;
-    height: 100%; /* Ensures it fills the full screen */
+    height: 100%; 
     width: 100%;
-    gap: 3px; /* Smaller gap */
+    gap: 3px; 
     display: fixed;
     align-self: auto;
     font-size: 8px;
-    
-    /* Default: Desktop Layout (6 columns) */
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(4, 1fr);
 }
@@ -225,7 +222,7 @@ body {
     font-size: 10px;
     overflow: hidden;
     border-radius: 10px;
-    
+    border: 1px solid #eeeeee;
 }
 
 .div2 {
@@ -235,6 +232,7 @@ body {
     grid-row-start: 3;
     font-size: 10px;
     border-radius: 10px;
+    border: 1px solid #eeeeee;
     
 }
 
@@ -246,6 +244,7 @@ body {
     border-radius: 10px;
     display: flex;
     overflow: hidden;
+    border: 1px solid #eeeeee;
    
 }
 
@@ -257,6 +256,7 @@ body {
     border-radius: 10px;
     display: flex;
     overflow: hidden;
+    border: 1px solid #eeeeee;
     
 }
 
@@ -270,6 +270,7 @@ body {
     overflow: hidden;
     font-size: 10px;
     padding: 10px;
+    border: 1px solid #eeeeee;
 }
 
 .div6 {
@@ -281,6 +282,7 @@ body {
     display: flex;
     border-radius: 10px;
     overflow: hidden;
+    border: 1px solid #eeeeee;
 }
 
 .div7 {
@@ -295,6 +297,7 @@ body {
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
+    border: 1px solid #eeeeee;
 }
 
 #map{
@@ -304,7 +307,7 @@ body {
     border-radius: 10px;
 }
 
-/* Tablet View - Adjust to 2 Columns */
+/* Tablet View*/
 @media (max-width: 1024px) {
     .parent {
         grid-template-columns: repeat(2, 1fr);
@@ -317,11 +320,11 @@ body {
     }
 
     .div7 {
-        grid-column: span 2; /* Take full width */
+        grid-column: span 2;
     }
 }
 
-/* Mobile View - Single Column */
+/* Mobile View */
 @media (max-width: 768px) {
     .parent {
         grid-template-columns: 1fr;
