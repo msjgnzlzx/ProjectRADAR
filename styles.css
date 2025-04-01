@@ -13,14 +13,14 @@ body {
 .header-container {
     background: linear-gradient(90deg, #001b38, #012955);
     color: rgb(255, 255, 255);
-    padding: 5px;
+    padding: 3px;
     font-weight: bold;
     font-size: 1.5em;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
-    width: 100vw;
+    width: 99.55vw;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
@@ -162,6 +162,59 @@ body {
     border: 1px solid #222222;
 }
 
+.weather-updates.blue-dark-mode {
+    background-color: #0d1b2a;
+    color: #ffffff;
+}
+
+.weather-container.blue-dark-mode {
+    background: linear-gradient(135deg, #1b2631, #0d1b2a);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+
+.weather-header.blue-dark-mode {
+    color: #ffffff;
+}
+
+.weather-description.blue-dark-mode {
+    color: #aab8c2;
+}
+
+#temperature.blue-dark-mode {
+    color: #ffcc00;
+}
+
+.degree-symbol.blue-dark-mode {
+    color: #ffcc00;
+}
+
+.weather-details.blue-dark-mode {
+    color: #ffffff;
+}
+
+.weather-details li.blue-dark-mode {
+    border-bottom: 1px solid #444;
+}
+
+.weather-input.blue-dark-mode {
+    background-color: #1b2631;
+    color: #ffffff;
+}
+
+.weather-input.blue-dark-mode::placeholder {
+    color: #aaaaaa;
+}
+
+.weather-button.blue-dark-mode i {
+    color: #007bff;
+}
+
+.weather-button.blue-dark-mode:hover i {
+    color: #0056b3;
+}
+
 .dropdown-container {
     position: absolute;
     top: 70px; 
@@ -292,7 +345,6 @@ body {
     grid-row-start: 1;
     font-size: 10px;
     position: relative;
-    border: 1px;
     padding: 10px;
     background-color: white;
     border-radius: 10px;
@@ -395,63 +447,122 @@ h3 {
 }
 
 .weather-updates {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    padding: 15px; 
-    border-radius: 8px; 
-    background: rgba(0, 123, 255, 0.1); 
-    margin: 10px; 
-    color: #000000; 
+    margin: 20px 0;
 }
 
-.weather-card {
-    padding: 10px;
-    width: 100%; 
-    background: white; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+.weather-container {
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .weather-header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+}
+
+.city-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.weather-description {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.temperature {
+    display: flex;
     align-items: center;
 }
 
-.temperature img {
-    width: 100px;
+#temperature {
+    font-size: 3rem; 
+    font-weight: 800;
+    color: #ff5722; 
+    margin-right: 5px; 
 }
 
-ul {
+.degree-symbol {
+    font-size: 1.2rem; 
+    vertical-align: super; 
+}
+
+#weatherIcon {
+    width: 70px; 
+    height: 70px; 
+    margin-right: 10px; 
+}
+
+.weather-details {
     list-style: none;
     padding: 0;
+    margin-top: 15px;
+    display: flex; 
+    flex-direction: column; 
+}
+.weather-details li {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 0;
+    border-bottom: 1px solid #444; 
+}
+
+.weather-details li i {
+    margin-right: 10px; 
+    color: #ffcc00; 
+}
+
+.weather-form {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-li {
-    text-align: center;
+.weather-input {
+    flex: 1;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8); 
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.dark-mode .weather-updates {
-    background: rgba(43, 145, 255, 0.308); 
-    color: #e0e0e0; 
+.weather-input::placeholder {
+    color: #aaa; 
 }
 
-.dark-mode .weather-card {
-    background: #00194eb7; 
-    color: #e0e0e0; 
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); 
+.weather-input:focus {
+    outline: none;
+    background-color: white; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.dark-mode input {
-    background: #003366;
-    color: #e0e0e0; 
-    border: none; 
+.weather-button {
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    margin-left: 10px; 
 }
 
-.dark-mode button {
-    background: #0056b3; 
-    color: white; 
+.weather-button i {
+    color: #007bff; 
+    font-size: 1.2rem; 
+    transition: color 0.3s;
+}
+
+.weather-button:hover i {
+    color: #0056b3; 
 }
