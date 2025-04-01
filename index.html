@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emergency Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -21,7 +22,7 @@
             <img src="Icon.png" alt="Logo">
             <h2>Emergency Response Dashboard</h2>
             <button class="navbar-toggler" type="button" id="burger-menu" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars"></i> <!-- Updated to use Font Awesome bars icon -->
             </button>
         </div>
         
@@ -95,36 +96,46 @@
                 <div class="div2">
                     <div class="weather-updates">
                         <h4 class="card-title"><i class="fas fa-cloud-sun-rain"></i> Weather Updates</h4>
-                        <div id="weather-container">
-                            <form id="weatherForm">
-                                <input type="text" id="cityInput" autocomplete="off" placeholder="Enter city name">
-                                <button type="submit">
+                        <div class="weather-container">
+                            <form id="weatherForm" class="weather-form">
+                                <input type="text" id="cityInput" class="weather-input" placeholder="Enter city name" required>
+                                <button type="submit" class="weather-button">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </form>
-                            <section class="weather-container">
-                                <div class="weather-card">
-                                    <div class="weather-header">
-                                        <figure class="city-name">
-                                            <figcaption id="cityName">--</figcaption> 
-                                            <img id="countryFlag" src="" alt="Flag">
-                                        </figure>
-                                        <p class="weather-description" id="weatherDescription">--</p>
-                                    </div>
-                                    <div class="weather-main">
-                                        <figure class="temperature">
-                                            <img id="weatherIcon" src="" alt="Weather Icon">
-                                            <figcaption>
-                                                <span id="temperature">--</span><sup>°C</sup>
-                                            </figcaption> 
-                                        </figure>
-                                    </div>
-                                    <ul class="weather-details">
-                                        <li><span>Clouds</span><i class="fa-solid fa-cloud"></i><span id="clouds">--</span>%</li>
-                                        <li><span>Humidity</span><i class="fa-solid fa-droplet"></i><span id="humidity">--</span>%</li>
-                                        <li><span>Pressure</span><i class="fa-solid fa-gauge"></i><span id="pressure">--</span> hPa</li>
-                                    </ul>
+                            <section class="weather-card">
+                                <div class="weather-header">
+                                    <figure class="city-name">
+                                        <figcaption id="cityName">--</figcaption> 
+                                        <img id="countryFlag" src="" alt="Flag" style="width: 30px; height: auto;">
+                                    </figure>
+                                    <p class="weather-description" id="weatherDescription">--</p>
                                 </div>
+                                <div class="weather-main">
+                                    <figure class="temperature">
+                                        <img id="weatherIcon" src="" alt="Weather Icon" style="width: 70px; height: 70px;"> <!-- Increased size -->
+                                        <figcaption>
+                                            <span id="temperature">--</span><sup class="degree-symbol">°C</sup>
+                                        </figcaption> 
+                                    </figure>
+                                </div>
+                                <ul class="weather-details">
+                                    <li>
+                                        <span>Clouds </span>
+                                        <i class="fa-solid fa-cloud"></i>
+                                        <span id="clouds">--</span>%
+                                    </li>
+                                    <li>
+                                        <span>Humidity </span>
+                                        <i class="fa-solid fa-droplet"></i>
+                                        <span id="humidity">--</span>%
+                                    </li>
+                                    <li>
+                                        <span>Pressure </span>
+                                        <i class="fa-solid fa-gauge"></i>
+                                        <span id="pressure">--</span> hPa
+                                    </li>
+                                </ul>
                             </section>
                         </div>
                     </div>
