@@ -33,7 +33,7 @@
             <div class="dropdown-item" onclick="index.html='emergency_response_dashboard.html'">
                 <i class="fas fa-home"></i> Emergency Response Dashboard
             </div>
-            <div class="dropdown-item" onclick="location.href='hazard_mapping.html'">
+            <div class="dropdown-item" onclick="window.open('https://hazardhunter.georisk.gov.ph/map#')">
                 <i class="fas fa-map"></i> Hazard Mapping
             </div>
         </div>
@@ -57,7 +57,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>Manila</td>
+                                                    <td>New Zaniga</td>
                                                     <td>12:30 PM</td>
                                                     <td>Fire</td>
                                                     <td>1</td>
@@ -65,21 +65,29 @@
                                                 
                                                 <tr>
                                                     <td>2</td>
-                                                    <td>Mandaluyong</td>
+                                                    <td>Addition Hills</td>
                                                     <td>3:45 PM</td>
                                                     <td>Vehicular Accident</td>
                                                     <td>2</td>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
-                                                    <td>Batangas</td>
+                                                    <td>San Jose</td>
                                                     <td>3:45 PM</td>
                                                     <td>Flood</td>
                                                     <td>3</td>
                                                 </tr>
                                                 <tr>
                                                     <td>4</td>
-                                                    <td>Cavite</td>
+                                                    <td>Malamig</td>
+                                                    <td>3:45 PM</td>
+                                                    <td>Fire</td>
+                                                    <td>0</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>Addition Hills</td>
                                                     <td>3:45 PM</td>
                                                     <td>Fire</td>
                                                     <td>0</td>
@@ -140,18 +148,23 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="loading-screen" style="display: none;">
+                    <div class="spinner"></div> <!-- Or any loading animation you prefer -->
+                    <p>Loading...</p>
+                </div>
         
                 <div class="div3">
                     <div class="chart-box">
                         <h3 class="card-title"><i class="fas fa-chart-pie"></i> Monthly Incident Report</h3>
-                        <canvas id="monthlyIncidentChart" style="height: 270px; width: 100%;"></canvas>
+                        <canvas id="monthlyIncidentChart" style="height: 400px; width: 100%;"></canvas>
                     </div>
                 </div>
         
                 <div class="div4">
                     <div class="chart-box">
                         <h3 class="card-title"><i class="fas fa-chart-pie"></i> Involved Barangay</h3>
-                        <canvas id="incidentChart" style="height: 270px; width: 100%;"></canvas>
+                        <canvas id="incidentChart" style="height: 470px; width: 100%; margin-top: 50px;"></canvas>
                     </div>
                 </div>
         
@@ -159,19 +172,23 @@
                     <div id="emergency-analytics">
                         <div id="legend-container"></div>
                         <h3 class="card-title"><i class="fas fa-chart-pie"></i> Emergency Analytics</h3>
-                        <canvas id="emergencyChart" style="height: 290px; width: 100%;"></canvas>
+                        <canvas id="emergencyChart" style="height: 400px; width: 100%;"></canvas>
                     </div>
                 </div>
         
                 <div class="div6">
                     <div id="rescue-analytics">
                         <h3 class="card-title"><i class="fas fa-user-plus"></i> Rescues via Radar Mobile App</h3>
-                        <canvas id="rescueChart" style="height: 265px; width: 100%;"></canvas>
+                        <canvas id="rescueChart" style="height: 400px; width: 100%;"></canvas>
                     </div>
                 </div>
         
                 <div class="div7">
                     <div id="map"></div>
+                    <div class="text"><h2>Enter Location:</h2>
+                        <input type="text" id="locationInput" placeholder="Enter a place">
+                        <button onclick="geocodeLocation()">Show on Map</button>
+                    </div>
                 </div>
             </div>
         </main>        
